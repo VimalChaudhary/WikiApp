@@ -22,23 +22,23 @@ function getData(query){
 	var url = "http://127.0.0.1:8088/api/detail/"+split[4];   
 	$.getJSON(url, function(data){
 			
-			//Returned data is not a valid json so removing the unnecessary parts
-			data= data.slice(5,data.length-1);
-			var jsonObject = JSON.parse(data);
+		//Returned data is not a valid json so removing the unnecessary parts
+		data= data.slice(5,data.length-1);
+		var jsonObject = JSON.parse(data);
 		
-			//retreiving the html data
-			var markup = jsonObject.parse.text["*"];
-			var blurb = $('<div></div>').html(markup);
+		//retreiving the html data
+		var markup = jsonObject.parse.text["*"];
+		var blurb = $('<div></div>').html(markup);
  
-            // remove links as they will not work
-            blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
+		// remove links as they will not work
+            	blurb.find('a').each(function() { $(this).replaceWith($(this).html()); });
  
-            // remove any references
-            blurb.find('sup').remove();
+            	// remove any references
+            	blurb.find('sup').remove();
  
-            // remove cite error
-            blurb.find('.mw-ext-cite-error').remove();
-            $('#article').html($(blurb).find('p'));
+            	// remove cite error
+            	blurb.find('.mw-ext-cite-error').remove();
+            	$('#article').html($(blurb).find('p'));
 			
 			
 	});
